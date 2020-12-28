@@ -8,7 +8,7 @@ each data structure has 2 files.  One file is the implementation, the other is a
 
 Besides data structures and sorting algorithms, each remain file consists of 5 parts:
 
-1. the difficult level and related topics
+1. the difficulty level and related topics
 
 2. problem statement
 
