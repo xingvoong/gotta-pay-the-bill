@@ -1,4 +1,3 @@
-
 This repo is my implementation of algorithms, puzzles, data structures, and coding exercises with a hope to help me stay sharp with my knowledge and prepare for CS technical interviews.
 
 A file ends with lc, which means that problem is from leetcode.com
@@ -8,7 +7,7 @@ each data structure has 2 files.  One file is the implementation, the other is a
 
 Besides data structures and sorting algorithms, each remain file consists of 5 parts:
 
-1. the difficulty level and related topics
+1. the difficult level and related topics
 
 2. problem statement
 
@@ -20,26 +19,35 @@ Besides data structures and sorting algorithms, each remain file consists of 5 p
 
 # Topic:
 ## array
-- [x] candy crush
-- [x] invalid transactions
-- [x] max subarray
-- [x] median sorted array
-- [x] merged intervals
-- [x] product of array except itself
-- [x] two sum
+ - [x] candy crush
+ - [x] invalid transactions
+ - [x] max subarray
+ - [x] median sorted array
+ - [x] merged intervals
+ - [x] product of array except itself
+ - [x] two sum
+## back tracking
+ - [x] n queens
+ - [x] word search
 ## greedy
-- [x] two cities scheduling
+Note: chose the best option among all the options.  To prove to correctness of greedy, one uses prove by contradiction.  
+ - [x] two cities scheduling
 ## system design
-- [x] brower history
-- [x] leader board
-- [x] lru cache
-- [x] underground system
+Note: focus on the function that use more data.
+ - [x] brower history
+ - [x] leader board
+ - [x] lru cache
+ - [x] underground system
 ## tree
-- [x] vertical traversal I
-- [x] vertical traversal II
+ - [x] vertical traversal I
+ - [x] vertical traversal II
 ## dfs/bfs
-- [x] number of islands
-- [x] all paths from a source to a target
+ - [x] number of islands
+ - [x] all paths from a source to a target
+ - [x] evaluate division
+## dynamic programming
+ - [x] decode way
+
 ## list
 - [x] flatten nested double linked list
 - [x] meeting rooms 2
