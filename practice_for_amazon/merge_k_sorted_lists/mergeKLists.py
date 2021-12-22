@@ -26,19 +26,12 @@ O: []
 
 '''
 # Node class
-class Node:
+class ListNode:
 
   # funtion to init the node object
-  def __init__(self, val):
+  def __init__(self, val, next = None):
     self.val = val
-    self.next = None
-
-# Linked list class contains a Node object
-class LinkedList:
-
-  # Function to init head
-  def __init__(self):
-    self.head = None
+    self.next = next
 
   def __str__(self):
 
@@ -46,7 +39,7 @@ class LinkedList:
     result = ""
 
     # initializing ptr to head
-    ptr = self.head
+    ptr = self
 
     # traversing and adding it to res
     while ptr:
@@ -58,26 +51,53 @@ class LinkedList:
     if len(result):
       return "[" + result + "]"
     else:
-      return result
+      return []
+
 
 # Code execution
 if __name__ == '__main__':
 
-  # start with the empty list
-  LinkedList = LinkedList()
+  # a linked list
+  node11 = ListNode(1)
+  node12 = ListNode(4)
+  node13 = ListNode(5)
+  node11.next = node12
+  node12.next = node13
 
-  # creating nodes
-  LinkedList.head = Node(1)
-  second = Node(2)
-  third = Node(3)
+  # another linked list
+  node21 = ListNode(1)
+  node22 = ListNode(3)
+  node23 = ListNode(4)
+  node21.next = node22
+  node22.next = node23
 
-  # connecting nodes
-  LinkedList.head.next = second
-  second.next = third
-  # when print is called, the str method is being called
+  # another linked list
+  node31 = ListNode(2)
+  node32 = ListNode(6)
+  node33 = ListNode(7)
+  node31.next = node32
+  node32.next = node33
 
   def mergeKLists(lists):
+    nodes = []
+    head = pointer = ListNode(0)
+
+    for l in lists:
+      # l is the head if a linked list, in lists
+      while l:
+        nodes.append(l.val)
+        l = l.next
+    nodes.sort()
+    for val in nodes:
+      pointer.next = ListNode(val)
+      pointer = pointer.next
+
+    return head.next
+
+
+  print(mergeKLists([node11, node21, node31]))
+  print(mergeKLists([[]]))
 
 
 
-  mergeKLists()
+
