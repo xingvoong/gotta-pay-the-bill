@@ -84,7 +84,21 @@ class TreeNode:
         return res
 
     def sortedArrayToBST(self, nums):
+        def helper(left, right):
+            if left >  right:
+                return None
 
+            # always choose left middle node as a root
+            p = (left + right) // 2
+
+            # preorder travesal: node => left => right
+            node = TreeNode(nums[p])
+            node.left = helper(left, p - 1)
+            node.right = helper(p + 1, right)
+
+            return node
+
+        return helper(0, len(nums) - 1)
 
 root = TreeNode(27)
 root.insert(14)
@@ -93,3 +107,20 @@ root.insert(10)
 root.insert(19)
 root.insert(31)
 root.insert(42)
+
+nums = [-10,-3,0,5,9]
+print(root.sortedArrayToBST(nums))
+
+'''
+Algo:
+- Implement helper function helper(left, right), which constructs BST from nums elements between indexes left and right:
+
+- if left > right, then there is no elements available for that subtree.  Return None
+- Pick left middle element: p = (left + right) // 2
+- Initiate the root: root = TreeNode(nums[p])
+- Compute recursively left and right subtrees: root.left = helper(left, p - 1)
+- root.right = helper(p+1, right)
+
+return helper(0, len(nums) - 1)
+
+'''
