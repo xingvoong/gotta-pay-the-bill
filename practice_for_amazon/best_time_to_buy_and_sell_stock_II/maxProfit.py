@@ -1,4 +1,4 @@
-'''
+"""
 You are given an integer array prices where prices[i] is the price of a given stock on the ith day
 
 On each day, you may decide to buy and/or sell the stock.  You can only hold at most one share of the stock at any time.  However, you can buy it then immedidately sell it on the same day.
@@ -25,6 +25,27 @@ Example 3:
 Input: prices = [7, 6, 4, 3, 1]
 Output: 0
 Explanation: there is no way to make a positive profit, so we never buy the stock to achieve the maxinum profit of 0
-'''
+
+for each them, compare the price today with the price the day before to see whether
+the price go up.  Since we can buy and sell multiple days.  we can just keep buying and selling them.
+"""
+
 
 def maxProfit(prices):
+    max_profit = 0
+    for i in range(1, len(prices)):
+        if prices[i] > prices[i - 1]:
+            max_profit += prices[i] - prices[i - 1]
+
+    return max_profit
+
+
+example1 = [7, 1, 5, 3, 6, 4]
+example2 = [7, 6, 4, 3, 1]
+
+print(maxProfit(example2))
+
+"""
+time: O(N)
+space: O(1)
+"""
