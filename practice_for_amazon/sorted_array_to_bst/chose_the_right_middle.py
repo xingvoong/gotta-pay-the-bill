@@ -84,26 +84,21 @@ class TreeNode:
         return res
 
     def sortedArrayToBST(self, nums):
-
         def helper(left, right):
-            if left > right:
+            if left >  right:
                 return None
 
-            # always chose the right middle
+            # always choose left middle node as a root
             p = (left + right) // 2
-            if (left + right) % 2 != 0:
-                p + = 1
 
-            # also, p is just index, to get the value, I need to do nums[p]
-            root = TreeNode(nums[p])
-            root.left = helper(left, p - 1)
-            root.right = helper(p + 1, right)
+            # preorder travesal: node => left => right
+            node = TreeNode(nums[p])
+            node.left = helper(left, p - 1)
+            node.right = helper(p + 1, right)
 
-            # remember to return the root
-            return root
+            return node
 
         return helper(0, len(nums) - 1)
-
 
 root = TreeNode(27)
 root.insert(14)

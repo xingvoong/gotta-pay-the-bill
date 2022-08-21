@@ -1,16 +1,12 @@
 """
 Given a mxn grid filled with non-negative numbers, find a path from top left to bottom right, whcih minumizes the sum all all numbers along its path.
-
 Note:  you can only move either down or right at any point in time.
-
 # at any point, I only consider down and right until I reach the final
-
 Constraints:
 - m ==  grid.length
 - n == grid[i].length
 - 1 <= m, n <= 200
 - 0 <= grid[i][j] <= 100
-
 """
 
 
@@ -18,7 +14,6 @@ def minPathSum(grid):
     """
     :type grid: List[List[int]]
     :rtype: int
-
     """
     MAX_ROWS = len(grid)
     MAX_COLS = len(grid[0])

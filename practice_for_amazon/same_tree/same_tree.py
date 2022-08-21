@@ -1,19 +1,19 @@
 '''
-Given an integer array nums where the elements are sorted in ascending order, convert it to a height-blanaced binary search tree.
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 
-A height-balanced binary tree is a binary tree in which the depth of the two subtrees of everynode never differs by more than one
+Two binary trees are considered the same if they are structurelly identical, and the nodes have the same value.
 
-Example 1:
+input: p = [1, 2, 3], q = [1, 2, 3]
+output: true
 
-input: nums = [-10, -3, 0, 5, 9]
-output: [0, -3, 9, -10, null, 5]
-explantation: [0, -10, 5, null, -3, null, 9] is also accepted
 
-example 2:
-input: nums = [1, 3]
-output: [3, 1]
+input: p = [1, 2], q = [1, null, 2]
+output: false
 
-=> they need to be balance and BST
+Constraints:
+- the number of nodes in both trees is in the range [0, 100]
+- -10^4 <= Node.val <= 10^4
+
 '''
 
 class TreeNode:
@@ -83,26 +83,18 @@ class TreeNode:
             res.append(root.value)
         return res
 
-    def sortedArrayToBST(self, nums):
+    def isSameTree(self, p, q):
+      if not p and not q:
+        return True
 
-        def helper(left, right):
-            if left > right:
-                return None
+      if not p or not q:
+        return False
 
-            # always chose the right middle
-            p = (left + right) // 2
-            if (left + right) % 2 != 0:
-                p + = 1
+      if p.value != q.value:
+        return False
 
-            # also, p is just index, to get the value, I need to do nums[p]
-            root = TreeNode(nums[p])
-            root.left = helper(left, p - 1)
-            root.right = helper(p + 1, right)
-
-            # remember to return the root
-            return root
-
-        return helper(0, len(nums) - 1)
+      return (self.isSameTree(p.left, q.left) and
+              self.isSameTree(p.right, q.right))
 
 
 root = TreeNode(27)
@@ -113,19 +105,20 @@ root.insert(19)
 root.insert(31)
 root.insert(42)
 
-nums = [-10,-3,0,5,9]
-print(root.sortedArrayToBST(nums))
+q = TreeNode(1)
+q.insert(2)
+q.insert(3)
+
+
+p = TreeNode(1)
+p.insert(2)
+p.insert(4)
+
+print(q.isSameTree(q, p))
 
 '''
-Algo:
-- Implement helper function helper(left, right), which constructs BST from nums elements between indexes left and right:
-
-- if left > right, then there is no elements available for that subtree.  Return None
-- Pick left middle element: p = (left + right) // 2
-- Initiate the root: root = TreeNode(nums[p])
-- Compute recursively left and right subtrees: root.left = helper(left, p - 1)
-- root.right = helper(p+1, right)
-
-return helper(0, len(nums) - 1)
+time: O(N)
+space: O(N)
 
 '''
+

@@ -133,6 +133,7 @@ if __name__ == "__main__":
         left = helper(left, mid - 1)
 
         root = TreeNode(head.val)
+        # need to move the head
         head = head.next
 
         root.left = left

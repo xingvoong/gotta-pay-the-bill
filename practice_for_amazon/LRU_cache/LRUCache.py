@@ -82,6 +82,7 @@ class LRUCache:
     if (self.head.head == None):
       print("The cache is empty")
       return
+      
     ptr = self.head.head
 
     print("the cache is: ")

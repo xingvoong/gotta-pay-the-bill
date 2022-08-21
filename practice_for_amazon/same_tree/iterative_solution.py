@@ -75,6 +75,7 @@ class TreeNode:
       # make a queue
       # add node into it and then check the node with a helper function
       # helper function check whether those 2 nodes are valid for the tree to be the same
+      #
       queue = deque([(p, q)])
 
       while queue:

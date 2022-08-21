@@ -1,19 +1,17 @@
 '''
-Given an integer array nums where the elements are sorted in ascending order, convert it to a height-blanaced binary search tree.
+Given the root of binary tree, return the level order traversal of its node's values (i.e from left to right, level by level)
 
-A height-balanced binary tree is a binary tree in which the depth of the two subtrees of everynode never differs by more than one
+Input: root = [3, 9, 20, null, null, 15, 7]
+Output: [[3], [9, 20], [15, 7]]
 
-Example 1:
+Example 2:
+input: root = [1]
+output: [[1]]
 
-input: nums = [-10, -3, 0, 5, 9]
-output: [0, -3, 9, -10, null, 5]
-explantation: [0, -10, 5, null, -3, null, 9] is also accepted
+Example 3:
+input: root = []
+output: []
 
-example 2:
-input: nums = [1, 3]
-output: [3, 1]
-
-=> they need to be balance and BST
 '''
 
 class TreeNode:
@@ -83,26 +81,42 @@ class TreeNode:
             res.append(root.value)
         return res
 
-    def sortedArrayToBST(self, nums):
+    def levelOrder(self, root):
+      from collections import deque
+      # return result
+      result = []
 
-        def helper(left, right):
-            if left > right:
-                return None
+      # check whether the input is valid
+      if not root:
+        return root
 
-            # always chose the right middle
-            p = (left + right) // 2
-            if (left + right) % 2 != 0:
-                p + = 1
 
-            # also, p is just index, to get the value, I need to do nums[p]
-            root = TreeNode(nums[p])
-            root.left = helper(left, p - 1)
-            root.right = helper(p + 1, right)
+      level = 0
+      # queue for BFS
+      queue = deque([root])
 
-            # remember to return the root
-            return root
+      # process the queue (or all the level)
+      while queue:
+        # open the level
+        result.append([])
 
-        return helper(0, len(nums) - 1)
+        # number of elements in the current level
+        num = len(queue)
+
+        # process the current level
+        for i in range(num):
+          node = popleft()
+
+          result[level].append(node.value)
+          if node.left:
+            queue.append(node.left)
+          if node.right:
+            queue.append(node.right)
+
+        level += 1
+
+      return levels
+
 
 
 root = TreeNode(27)
@@ -112,20 +126,22 @@ root.insert(10)
 root.insert(19)
 root.insert(31)
 root.insert(42)
+# print("inorderTraversal", root.inorderTraversal(root))
+# print("preorderTraversal", root.preorderTraversal(root))
+# print("postorderTraversal", root.postorderTraversal(root))
 
-nums = [-10,-3,0,5,9]
-print(root.sortedArrayToBST(nums))
+print(root.levelOrder(root))
+
 
 '''
-Algo:
-- Implement helper function helper(left, right), which constructs BST from nums elements between indexes left and right:
+time:
+let N be the number of nodes in the tree
+time: O(N), the time to call helper
+space: O(N), for recursive stack
 
-- if left > right, then there is no elements available for that subtree.  Return None
-- Pick left middle element: p = (left + right) // 2
-- Initiate the root: root = TreeNode(nums[p])
-- Compute recursively left and right subtrees: root.left = helper(left, p - 1)
-- root.right = helper(p+1, right)
 
-return helper(0, len(nums) - 1)
-
+take aways:
+- Have the result as return value
+- if len(result) == level: we append spot for that level's node.
+- travel left and right with increasing level.
 '''
